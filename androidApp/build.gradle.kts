@@ -4,12 +4,12 @@ plugins {
 }
 
 android {
-    namespace = "com.kyant.backdrop.catalog"
+    namespace = "com.koaidev.backdrop.catalog"
     compileSdk = 37
     buildToolsVersion = "37.0.0"
 
     defaultConfig {
-        applicationId = "com.kyant.backdrop.catalog"
+        applicationId = "com.koaidev.backdrop.catalog"
         minSdk = 23
         targetSdk = 37
         versionCode = 1

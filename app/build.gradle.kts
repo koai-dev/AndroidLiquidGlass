@@ -13,7 +13,7 @@ kotlin {
         minSdk = 21
         compileSdk = 37
         buildToolsVersion = "37.0.0"
-        namespace = "com.kyant.backdrop.catalog.common"
+        namespace = "com.koaidev.backdrop.catalog.common"
         androidResources.enable = true
         compilerOptions {
             jvmTarget = JvmTarget.JVM_11
@@ -51,6 +51,7 @@ kotlin {
                 implementation(libs.compose.resources)
                 implementation(libs.compose.material.ripple)
                 implementation(libs.kyant.shapes)
+                implementation(libs.jetbrains.annotations)
                 implementation(project(":backdrop"))
             }
         }
@@ -104,11 +105,11 @@ kotlin {
 
 compose.desktop {
     application {
-        mainClass = "com.kyant.backdrop.catalog.MainKt"
+        mainClass = "com.koaidev.backdrop.catalog.MainKt"
 
         nativeDistributions {
             targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb)
-            packageName = "com.kyant.backdrop.catalog"
+            packageName = "com.koaidev.backdrop.catalog"
             packageVersion = "1.0.0"
         }
     }

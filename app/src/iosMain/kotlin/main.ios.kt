@@ -1,6 +1,6 @@
 import androidx.compose.ui.uikit.OnFocusBehavior
 import androidx.compose.ui.window.ComposeUIViewController
-import com.kyant.backdrop.catalog.MainContent
+import com.koaidev.backdrop.catalog.MainContent
 import platform.UIKit.UIViewController
 
 fun MainViewController(): UIViewController =

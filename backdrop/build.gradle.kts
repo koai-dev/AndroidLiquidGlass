@@ -1,4 +1,5 @@
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+import org.gradle.plugins.signing.SigningExtension
 
 plugins {
     alias(libs.plugins.android.multiplatform.library)
@@ -13,7 +14,7 @@ kotlin {
         minSdk = 21
         compileSdk = 37
         buildToolsVersion = "37.0.0"
-        namespace = "com.kyant.backdrop"
+        namespace = "com.koaidev.backdrop"
         compilerOptions {
             jvmTarget = JvmTarget.JVM_11
         }
@@ -37,11 +38,19 @@ kotlin {
     sourceSets {
         val commonMain = getByName("commonMain") {
             dependencies {
-                implementation(libs.compose.foundation)
-                implementation(libs.compose.ui)
-                implementation(libs.compose.ui.graphics)
+                api(libs.compose.foundation)
+                api(libs.compose.ui)
+                api(libs.compose.ui.graphics)
+                implementation(libs.compose.animation.core)
+                implementation(libs.kotlinx.coroutines.core)
                 implementation(libs.kyant.shapes)
-                implementation("org.jetbrains:annotations:26.1.0")
+                implementation(libs.jetbrains.annotations)
+            }
+        }
+
+        val androidMain = getByName("androidMain") {
+            dependencies {
+                implementation(libs.kotlinx.coroutines.android)
             }
         }
 
@@ -81,13 +90,13 @@ mavenPublishing {
     publishToMavenCentral()
     signAllPublications()
 
-    coordinates("io.github.kyant0", "backdrop", "2.0.1")
+    coordinates("io.github.koai-dev", "backdrop", "2.0.1")
 
     pom {
         name.set("Backdrop")
         description.set("Compose Multiplatform Liquid Glass effects")
         inceptionYear.set("2025")
-        url.set("https://github.com/Kyant0/AndroidLiquidGlass")
+        url.set("https://github.com/koai-dev/AndroidLiquidGlass")
         licenses {
             license {
                 name.set("The Apache License, Version 2.0")
@@ -97,15 +106,24 @@ mavenPublishing {
         }
         developers {
             developer {
-                id.set("Kyant0")
-                name.set("Kyant")
-                url.set("https://github.com/Kyant0")
+                id.set("koai-dev")
+                name.set("koai-dev")
+                url.set("https://github.com/koai-dev")
             }
         }
         scm {
-            url.set("https://github.com/Kyant0/AndroidLiquidGlass")
-            connection.set("scm:git:git://github.com/Kyant0/AndroidLiquidGlass.git")
-            developerConnection.set("scm:git:ssh://git@github.com/Kyant0/AndroidLiquidGlass.git")
+            url.set("https://github.com/koai-dev/AndroidLiquidGlass")
+            connection.set("scm:git:git://github.com/koai-dev/AndroidLiquidGlass.git")
+            developerConnection.set("scm:git:ssh://git@github.com/koai-dev/AndroidLiquidGlass.git")
         }
+    }
+}
+
+// Use the local GPG keyring when configured; CI can still supply an in-memory key.
+if (providers.gradleProperty("signing.gnupg.keyName").isPresent &&
+    !providers.gradleProperty("signingInMemoryKey").isPresent
+) {
+    extensions.configure<SigningExtension> {
+        useGpgCmd()
     }
 }
