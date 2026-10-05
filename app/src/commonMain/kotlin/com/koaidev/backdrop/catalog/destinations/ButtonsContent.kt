@@ -2,6 +2,8 @@ package com.koaidev.backdrop.catalog.destinations
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.BasicText
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -51,10 +53,14 @@ fun ButtonsContent() {
             LiquidButton(
                 {},
                 backdrop,
-                tint = Color(0xFFFF8D28)
+                tint = Color(0xFFFF8D28),
+                shape = RoundedCornerShape(16.dp),
+                minHeight = 56.dp,
+                contentPadding = PaddingValues(horizontal = 24.dp),
+                horizontalArrangement = Arrangement.spacedBy(12.dp, Alignment.CenterHorizontally)
             ) {
                 BasicText(
-                    "Tinted Liquid Button",
+                    "Custom Liquid Button",
                     style = TextStyle(Color.White, 15f.sp)
                 )
             }

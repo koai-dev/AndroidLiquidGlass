@@ -4,8 +4,9 @@ import androidx.compose.foundation.LocalIndication
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.RowScope
-import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
@@ -14,8 +15,10 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.BlendMode
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.graphics.isSpecified
 import androidx.compose.ui.semantics.Role
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.util.fastCoerceAtMost
 import androidx.compose.ui.util.lerp
@@ -32,6 +35,10 @@ import kotlin.math.cos
 import kotlin.math.sin
 import kotlin.math.tanh
 
+/**
+ * A glass button with a minimum height. Larger content and caller size constraints can grow it.
+ * [contentPadding] and [horizontalArrangement] control the layout inside [shape].
+ */
 @Composable
 fun LiquidButton(
     onClick: () -> Unit,
@@ -40,8 +47,15 @@ fun LiquidButton(
     isInteractive: Boolean = true,
     tint: Color = Color.Unspecified,
     surfaceColor: Color = Color.Unspecified,
+    shape: Shape = Capsule(),
+    minHeight: Dp = 48.dp,
+    contentPadding: PaddingValues = PaddingValues(horizontal = 16.dp),
+    horizontalArrangement: Arrangement.Horizontal = Arrangement.spacedBy(8.dp, Alignment.CenterHorizontally),
+    verticalAlignment: Alignment.Vertical = Alignment.CenterVertically,
     content: @Composable RowScope.() -> Unit
 ) {
+    require(minHeight.value.isFinite() && minHeight > 0.dp) { "minHeight must be positive and finite" }
+
     val animationScope = rememberCoroutineScope()
 
     val interactiveHighlight = remember(animationScope) {
@@ -54,7 +68,7 @@ fun LiquidButton(
         modifier
             .drawBackdrop(
                 backdrop = backdrop,
-                shape = { Capsule() },
+                shape = { shape },
                 effects = {
                     vibrancy()
                     blur(2f.dp.toPx())
@@ -113,10 +127,10 @@ fun LiquidButton(
                     Modifier
                 }
             )
-            .height(48f.dp)
-            .padding(horizontal = 16f.dp),
-        horizontalArrangement = Arrangement.spacedBy(8f.dp, Alignment.CenterHorizontally),
-        verticalAlignment = Alignment.CenterVertically,
+            .heightIn(min = minHeight)
+            .padding(contentPadding),
+        horizontalArrangement = horizontalArrangement,
+        verticalAlignment = verticalAlignment,
         content = content
     )
 }

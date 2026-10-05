@@ -6,12 +6,14 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.BasicText
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.paint
 import androidx.compose.ui.graphics.Color
@@ -69,10 +71,21 @@ fun BottomTabsContent() {
                     onTabSelected = { selectedTabIndex = it },
                     backdrop = backdrop,
                     tabsCount = 4,
-                    modifier = Modifier.padding(horizontal = 36f.dp)
+                    modifier = Modifier.padding(horizontal = 36f.dp),
+                    height = 80.dp,
+                    contentPadding = 6.dp,
+                    shape = RoundedCornerShape(24.dp),
+                    indicatorShape = RoundedCornerShape(18.dp),
+                    accentColor = Color(0xFFAF52DE),
+                    containerColor = Color(0xFFAF52DE).copy(alpha = 0.12f),
+                    indicatorColor = Color(0xFFAF52DE).copy(alpha = 0.18f)
                 ) {
                     repeat(4) { index ->
-                        LiquidBottomTab({ selectedTabIndex = index }) {
+                        LiquidBottomTab(
+                            onClick = { selectedTabIndex = index },
+                            shape = RoundedCornerShape(18.dp),
+                            verticalArrangement = Arrangement.spacedBy(4.dp, Alignment.CenterVertically)
+                        ) {
                             Box(
                                 Modifier
                                     .size(28f.dp)

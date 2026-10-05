@@ -1,5 +1,8 @@
-import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+import org.gradle.api.services.BuildService
+import org.gradle.api.services.BuildServiceParameters
+import org.gradle.plugins.signing.Sign
 import org.gradle.plugins.signing.SigningExtension
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
     alias(libs.plugins.android.multiplatform.library)
@@ -8,6 +11,8 @@ plugins {
     alias(libs.plugins.jetbrains.compose)
     id("com.vanniktech.maven.publish")
 }
+
+abstract class LocalGpgSigningService : BuildService<BuildServiceParameters.None>
 
 kotlin {
     android {
@@ -90,7 +95,7 @@ mavenPublishing {
     publishToMavenCentral()
     signAllPublications()
 
-    coordinates("io.github.koai-dev", "backdrop", "2.0.1")
+    coordinates("io.github.koai-dev", "backdrop", "2.0.2")
 
     pom {
         name.set("Backdrop")
@@ -125,5 +130,16 @@ if (providers.gradleProperty("signing.gnupg.keyName").isPresent &&
 ) {
     extensions.configure<SigningExtension> {
         useGpgCmd()
+    }
+
+    // One GPG request at a time lets the agent handle a single passphrase prompt.
+    val localGpgSigning = gradle.sharedServices.registerIfAbsent(
+        "backdropLocalGpgSigning",
+        LocalGpgSigningService::class
+    ) {
+        maxParallelUsages.set(1)
+    }
+    tasks.withType<Sign>().configureEach {
+        usesService(localGpgSigning)
     }
 }
