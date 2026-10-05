@@ -37,11 +37,19 @@ kotlin {
     sourceSets {
         val commonMain = getByName("commonMain") {
             dependencies {
-                implementation(libs.compose.foundation)
-                implementation(libs.compose.ui)
-                implementation(libs.compose.ui.graphics)
+                api(libs.compose.foundation)
+                api(libs.compose.ui)
+                api(libs.compose.ui.graphics)
+                implementation(libs.compose.animation.core)
+                implementation(libs.kotlinx.coroutines.core)
                 implementation(libs.kyant.shapes)
-                implementation("org.jetbrains:annotations:26.1.0")
+                implementation(libs.jetbrains.annotations)
+            }
+        }
+
+        val androidMain = getByName("androidMain") {
+            dependencies {
+                implementation(libs.kotlinx.coroutines.android)
             }
         }
 

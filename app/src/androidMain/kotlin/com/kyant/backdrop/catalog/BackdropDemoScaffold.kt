@@ -31,7 +31,7 @@ import androidx.compose.ui.unit.sp
 import com.kyant.backdrop.backdrops.LayerBackdrop
 import com.kyant.backdrop.backdrops.layerBackdrop
 import com.kyant.backdrop.backdrops.rememberLayerBackdrop
-import com.kyant.backdrop.catalog.components.LiquidButton
+import com.kyant.backdrop.components.LiquidButton
 import glass.app.generated.resources.Res
 import glass.app.generated.resources.wallpaper_light
 import org.jetbrains.compose.resources.painterResource

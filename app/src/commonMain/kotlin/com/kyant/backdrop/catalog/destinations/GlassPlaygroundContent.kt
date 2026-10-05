@@ -29,8 +29,8 @@ import androidx.compose.ui.unit.sp
 import com.kyant.backdrop.backdrops.rememberLayerBackdrop
 import com.kyant.backdrop.catalog.BackdropDemoScaffold
 import com.kyant.backdrop.catalog.Block
-import com.kyant.backdrop.catalog.components.LiquidButton
-import com.kyant.backdrop.catalog.components.LiquidSlider
+import com.kyant.backdrop.components.LiquidButton
+import com.kyant.backdrop.components.LiquidSlider
 import com.kyant.backdrop.drawBackdrop
 import com.kyant.backdrop.effects.blur
 import com.kyant.backdrop.effects.lens

@@ -23,8 +23,8 @@ import androidx.compose.ui.unit.sp
 import com.kyant.backdrop.catalog.BackdropDemoScaffold
 import com.kyant.backdrop.catalog.Block
 import com.kyant.backdrop.catalog.FlightIcon
-import com.kyant.backdrop.catalog.components.LiquidBottomTab
-import com.kyant.backdrop.catalog.components.LiquidBottomTabs
+import com.kyant.backdrop.components.LiquidBottomTab
+import com.kyant.backdrop.components.LiquidBottomTabs
 
 @Composable
 fun BottomTabsContent() {

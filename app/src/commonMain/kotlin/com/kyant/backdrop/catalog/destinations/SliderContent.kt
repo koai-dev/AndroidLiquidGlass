@@ -18,7 +18,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.kyant.backdrop.backdrops.rememberCanvasBackdrop
 import com.kyant.backdrop.catalog.BackdropDemoScaffold
-import com.kyant.backdrop.catalog.components.LiquidSlider
+import com.kyant.backdrop.components.LiquidSlider
 import com.kyant.shapes.RoundedRectangle
 
 @Composable

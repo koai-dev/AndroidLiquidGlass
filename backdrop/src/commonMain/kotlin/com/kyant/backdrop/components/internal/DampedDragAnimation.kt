@@ -1,4 +1,4 @@
-package com.kyant.backdrop.catalog.utils
+package com.kyant.backdrop.components.internal
 
 import androidx.compose.animation.core.Animatable
 import androidx.compose.animation.core.spring
@@ -16,7 +16,7 @@ import kotlinx.coroutines.launch
 import kotlin.math.abs
 import kotlin.time.Clock
 
-class DampedDragAnimation(
+internal class DampedDragAnimation(
     private val animationScope: CoroutineScope,
     val initialValue: Float,
     val valueRange: ClosedRange<Float>,

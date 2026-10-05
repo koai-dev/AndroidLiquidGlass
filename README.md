@@ -12,13 +12,26 @@ A customizable Liquid Glass effect library for Compose Multiplatform.
 
 ## Components
 
-The library does not include any high-level components; you will need to create your own.
-Below are some example components:
+The `backdrop` library includes reusable Liquid Glass components in
+`com.kyant.backdrop.components`:
 
-- [LiquidButton](/app/src/commonMain/kotlin/com/kyant/backdrop/catalog/components/LiquidButton.kt)
-- [LiquidToggle](/app/src/commonMain/kotlin/com/kyant/backdrop/catalog/components/LiquidToggle.kt)
-- [LiquidSlider](/app/src/commonMain/kotlin/com/kyant/backdrop/catalog/components/LiquidSlider.kt)
-- [LiquidBottomTabs](/app/src/commonMain/kotlin/com/kyant/backdrop/catalog/components/LiquidBottomTabs.kt)
+- [LiquidButton](/backdrop/src/commonMain/kotlin/com/kyant/backdrop/components/LiquidButton.kt)
+- [LiquidToggle](/backdrop/src/commonMain/kotlin/com/kyant/backdrop/components/LiquidToggle.kt)
+- [LiquidSlider](/backdrop/src/commonMain/kotlin/com/kyant/backdrop/components/LiquidSlider.kt)
+- [LiquidBottomTabs](/backdrop/src/commonMain/kotlin/com/kyant/backdrop/components/LiquidBottomTabs.kt)
+- [LiquidBottomTab](/backdrop/src/commonMain/kotlin/com/kyant/backdrop/components/LiquidBottomTab.kt)
+
+Import the components directly from the library; their gesture, animation, and
+highlight helpers are included internally, without a dependency on the catalog app.
+
+```kotlin
+import androidx.compose.foundation.text.BasicText
+import com.kyant.backdrop.components.LiquidButton
+
+LiquidButton(onClick = { /* Handle click */ }, backdrop = backdrop) {
+    BasicText("Continue")
+}
+```
 
 ## Demo
 

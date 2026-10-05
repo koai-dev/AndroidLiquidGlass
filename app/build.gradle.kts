@@ -51,6 +51,7 @@ kotlin {
                 implementation(libs.compose.resources)
                 implementation(libs.compose.material.ripple)
                 implementation(libs.kyant.shapes)
+                implementation(libs.jetbrains.annotations)
                 implementation(project(":backdrop"))
             }
         }

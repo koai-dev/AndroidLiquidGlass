@@ -1,4 +1,4 @@
-package com.kyant.backdrop.catalog.components
+package com.kyant.backdrop.components
 
 import androidx.compose.animation.core.Animatable
 import androidx.compose.animation.core.EaseOut
@@ -40,8 +40,8 @@ import com.kyant.backdrop.Backdrop
 import com.kyant.backdrop.backdrops.layerBackdrop
 import com.kyant.backdrop.backdrops.rememberCombinedBackdrop
 import com.kyant.backdrop.backdrops.rememberLayerBackdrop
-import com.kyant.backdrop.catalog.utils.DampedDragAnimation
-import com.kyant.backdrop.catalog.utils.InteractiveHighlight
+import com.kyant.backdrop.components.internal.DampedDragAnimation
+import com.kyant.backdrop.components.internal.InteractiveHighlight
 import com.kyant.backdrop.drawBackdrop
 import com.kyant.backdrop.effects.blur
 import com.kyant.backdrop.effects.lens
